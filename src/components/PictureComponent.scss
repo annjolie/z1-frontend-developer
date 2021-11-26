@@ -1,0 +1,45 @@
+.PictureComponent {
+    box-sizing: border-box;
+    height: 160px;
+    width: 260px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    &.error {
+        border: 2px solid #C00000;
+    }
+    >label {
+        height: 12px;
+        width: 64px;
+        padding: 9px 8px;
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 0.75px;
+        line-height: 12px;
+        display: none;
+        position: absolute;
+        bottom: -15px;
+        border-radius: 4px;
+        &.show {
+            display: block;
+        }
+        &.error {
+            background-color: #C00000;
+        }
+    }
+    >button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 12px 22.62px;
+        border-radius: 24px;
+        background-color: #2F0079;
+        transform: translate(-50%, -50%);
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 24px;
+        letter-spacing: 0.35px;
+    }
+}
