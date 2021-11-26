@@ -5,6 +5,22 @@
     border: none;
     border-radius: 12px;
     cursor: pointer;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    box-shadow: 0 10px 20px -6px rgba(0, 0, 0, 0.15);
+    padding: 18px;
+    .wrapper {
+        position: absolute;
+        cursor: pointer;
+        z-index: 500;
+        top: 42%;
+        left: 35%;
+        width: 260px;
+        height: 160px;
+    }
+    img {
+        width: 100%;
+    }
     &.error {
         border: 2px solid #C00000;
     }
@@ -30,7 +46,7 @@
     }
     >button {
         position: absolute;
-        top: 50%;
+        top: 55%;
         left: 50%;
         padding: 12px 22.62px;
         border-radius: 24px;
@@ -41,5 +57,6 @@
         font-weight: bold;
         line-height: 24px;
         letter-spacing: 0.35px;
+        z-index: 1px;
     }
 }

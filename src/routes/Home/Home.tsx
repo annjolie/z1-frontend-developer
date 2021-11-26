@@ -1,8 +1,14 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import PictureComponent from '../../components/PictureComponent';
 import './Home.scss';
 
 function Home() {
+  let navigate = useNavigate();
+
+  const onCameraHandler = () => {
+    navigate("/camera")
+  };
 
   return (
     <div className="Home">
@@ -18,7 +24,11 @@ function Home() {
           Take a picture. It may take time to validate your personal information.
         </p>
         <div className="photo-container">
-          <PictureComponent />
+          <PictureComponent
+            onCameraButton={onCameraHandler}
+            retake={false}
+
+          />
         </div>
       </div>
     </div>
