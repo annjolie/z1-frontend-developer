@@ -1,27 +1,27 @@
 import React from 'react';
 import './PictureComponent.scss';
 import IDBackground from '../images/id_bg.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface PictureProps {
     image: string | null;
     retake: boolean;
     isSuccess: boolean | null;
-    successMessage: string | null;
-    errorMessage: string | null;
     onCameraButton(): any
 }
 
 function PictureComponent(pictureProps : PictureProps) {
-    const { image, retake, isSuccess, successMessage, errorMessage, onCameraButton } = pictureProps;
+    const { image, retake, isSuccess, onCameraButton } = pictureProps;
     let imageSource = null;
-    console.log(pictureProps)
     if (image === null || image === "") {
+        // no tenemos la imagen, así que mostraremos la imagen por defecto
         imageSource = (<img className="shadow" src={IDBackground} alt="ID Background" />);
     }
     else {
-        imageSource = (<img src={image} className={isSuccess === true ? "success" : "error"} alt="User ID" />)
+        // tenemos la imagen, así que la mostramos, se colocará el borde verde en caso de éxito
+        // y en rojo en caso de error
+        imageSource = (<img src={image} className={isSuccess === true ? "success" : "error"} alt="User ID" />);
     }
 
     return (
@@ -40,7 +40,7 @@ function PictureComponent(pictureProps : PictureProps) {
                     ACCEPTED
                 </label>
             )}
-            {(isSuccess !== null && isSuccess === false) && (
+            {(image !== null && image !== "" && isSuccess !== null && isSuccess === false) && (
                 <label className="error">
                     <FontAwesomeIcon icon={faTimes} />
                     REJECTED

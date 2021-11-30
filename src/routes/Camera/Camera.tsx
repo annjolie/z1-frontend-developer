@@ -1,9 +1,10 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import './Camera.scss';
-import ID_BG from '../../images/id_bg.svg';
 import { EvaluationSummary } from '../../models/EvaluationsModel';
+import { faCheckCircle, faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Camera() {
   let navigate = useNavigate();
@@ -81,7 +82,18 @@ function Camera() {
               screenshotFormat="image/jpeg"
             />
           </div>
-          <div className="alert" id="alert-message"></div>
+          {isSuccess === null && (
+            <div className="alert">
+              <FontAwesomeIcon icon={faLightbulb} />
+              Room lighting is too low
+            </div>
+          )}
+          {isSuccess === true && (
+            <div className="alert">
+              <FontAwesomeIcon className="success" icon={faCheckCircle} />
+              Picture taken!
+            </div>
+          )}
           <div className="cancel" onClick={goBackHandler}>CANCEL</div>
         </div>
       </div>

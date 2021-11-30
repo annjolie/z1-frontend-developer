@@ -67,6 +67,13 @@ $error: #C00000;
                 display: flex;
                 justify-content: center;
                 text-align: center;
+                >svg {
+                    color: #FAB72D;
+                    margin-right: 8px;
+                    &.success {
+                        color: $success;
+                    }
+                }
             }
             >.cancel {
                 cursor: pointer;
