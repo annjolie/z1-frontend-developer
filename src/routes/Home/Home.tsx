@@ -7,21 +7,23 @@ import './Home.scss';
 function Home() {
   let navigate = useNavigate();
 
+  /**
+   * Verifica si fue exitoso o no la captura de imagen al servidor, y en la primera carga es null
+   */
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [retake, setRetake] = useState(false);
 
   useEffect(() => {
+    // En localStorage se encuentra almacenado la información
+    // de la captura de imagen y el resultado de la llamada
+    // POST de la evaluación de Z1
     const evaluationString = localStorage.getItem('z1-evaluation');
     if (evaluationString === null) {
       return;
     }
     const evaluation: Z1Evaluation = JSON.parse(evaluationString);
     setIsSuccess(evaluation.outcome === "Approved");
-    setErrorMessage(evaluation.outcome !== "Approved" ? evaluation.outcome : "");
-    setSuccessMessage(evaluation.outcome === "Approved" ? evaluation.outcome : "");
     setRetake(evaluation.outcome !== "Approved");
     setImageSrc(evaluation.imageSrc);
   }, [])
@@ -47,10 +49,8 @@ function Home() {
           <PictureComponent
             onCameraButton={onCameraHandler}
             retake={retake}
-            errorMessage={errorMessage}
             image={imageSrc}
             isSuccess={isSuccess}
-            successMessage={successMessage}
           />
         </div>
       </div>
